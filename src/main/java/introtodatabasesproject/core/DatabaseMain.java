@@ -1,5 +1,9 @@
 package main.java.introtodatabasesproject.core;
 
+import main.java.introtodatabasesproject.cmd.TableCmds;
+import main.java.introtodatabasesproject.entry.LocationEntry;
+import main.java.introtodatabasesproject.entry.TestEntry;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -54,6 +58,7 @@ public class DatabaseMain
         scan.nextLine();
         */
 
+        // testing stuff
         int streetNumber = 777;
         String streetName = "vyra way";
         int unitNumber = 69;
@@ -61,34 +66,13 @@ public class DatabaseMain
         String city = "ussl";
         String county = "rotterdam";
 
+        LocationEntry le = new LocationEntry(streetNumber, streetName, unitNumber, zipCode, city, county);
+        TestEntry te = new TestEntry("gay", 99);
+
+        TableCmds.insert("myTestTable", te);
+
         //addAddress(streetNumber, streetName, unitNumber, zipCode, city, county);
 
         scan.close();
-    }
-
-    // Add an entry to the Addresses table. Will be copied for Locations, Houses, Agents, Appliances, and Owners
-    public static void addAddress(int streetNumber, String streetName, int unitNumber, int zipCode, String city, String county)
-    {
-        // Actual sql command... in the try {} is what we'll attempt to insert
-        String sql = "INSERT INTO Addresses VALUES (?,?,?,?,?,?)";
-        try
-        {
-            Connection conn = DriverManager.getConnection(DB_ADDRESS, USER, PASSWORD);
-
-            // Turn the sql command into a prepared statement, and fill in the question marks.
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, streetNumber);
-            pstmt.setString(2, streetName);
-            pstmt.setInt(3, unitNumber);
-            pstmt.setInt(4, zipCode);
-            pstmt.setString(5, city);
-            pstmt.setString(6, county);
-            pstmt.executeUpdate();
-            pstmt.close();
-        }
-        catch (SQLException e)
-        {
-            System.err.println(e.getMessage());
-        }
     }
 }
