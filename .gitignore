@@ -2,3 +2,10 @@
 .idea
 out
 *.iml
+apache-tomcat-9.0.34
+
+# gradle
+build
+gradle
+.gradle
+*.properties
