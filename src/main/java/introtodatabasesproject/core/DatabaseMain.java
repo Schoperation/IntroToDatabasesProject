@@ -1,11 +1,10 @@
-package main.java.introtodatabasesproject.core;
+package introtodatabasesproject.core;
 
-import main.java.introtodatabasesproject.cmd.TableCmds;
-import main.java.introtodatabasesproject.entry.LocationEntry;
-import main.java.introtodatabasesproject.entry.TestEntry;
+import introtodatabasesproject.cmd.TableCmds;
+import introtodatabasesproject.entry.LocationEntry;
+import introtodatabasesproject.entry.TestEntry;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.Scanner;
 
 public class DatabaseMain
@@ -27,12 +26,14 @@ public class DatabaseMain
         }
         catch (ClassNotFoundException e)
         {
-            System.out.println("Couldn't load the driver! Make sure ojdbc6.jar is added as a dependency!");
+            System.out.println("Couldn't load the driver! Make sure ojdbc6.jar is in the libs folder!");
         }
 
         // See if Tomcat is installed in the project directory (starts off in IntroToDatabasesProject folder, emcompassing entire project)
         if (new File("apache-tomcat-9.0.34/").exists())
+        {
             System.out.println("Tomcat directory detected. Hallelujah!");
+        }
         else
             System.out.println("WARNING: Can't find apache-tomcat-9.0.34 directory! Put it in the main directory (outside src)!");
 
@@ -71,9 +72,9 @@ public class DatabaseMain
         String county = "rotterdam";
 
         LocationEntry le = new LocationEntry(streetNumber, streetName, unitNumber, zipCode, city, county);
-        TestEntry te = new TestEntry("gay", 99);
+        TestEntry te = new TestEntry("k", 89);
 
-        //TableCmds.insert("myTestTable", te);   already inserted
+        TableCmds.insert("myTestTable", te);
 
         //addAddress(streetNumber, streetName, unitNumber, zipCode, city, county);
 

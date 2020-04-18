@@ -1,11 +1,10 @@
-package main.java.introtodatabasesproject.cmd;
+package introtodatabasesproject.cmd;
 
-import main.java.introtodatabasesproject.entry.RowEntry;
+import introtodatabasesproject.entry.RowEntry;
 
-import java.io.Reader;
 import java.sql.*;
 
-import static main.java.introtodatabasesproject.core.DatabaseMain.*;
+import static introtodatabasesproject.core.DatabaseMain.*;
 
 // Basic table commands, can be adjusted to suit a particular table's needs
 public class TableCmds

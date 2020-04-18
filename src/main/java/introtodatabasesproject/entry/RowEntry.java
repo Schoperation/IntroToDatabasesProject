@@ -1,4 +1,4 @@
-package main.java.introtodatabasesproject.entry;
+package introtodatabasesproject.entry;
 
 import java.sql.Date;
 import java.util.ArrayList;

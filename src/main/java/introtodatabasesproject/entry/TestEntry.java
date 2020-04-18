@@ -1,4 +1,4 @@
-package main.java.introtodatabasesproject.entry;
+package introtodatabasesproject.entry;
 
 public class TestEntry extends RowEntry
 {
