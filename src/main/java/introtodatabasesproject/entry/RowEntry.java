@@ -1,6 +1,8 @@
 package introtodatabasesproject.entry;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Types;
 import java.util.ArrayList;
 
 public class RowEntry
@@ -16,12 +18,12 @@ public class RowEntry
     protected int length;
     protected int primaryKeyIndex;
     protected ArrayList data;
-    protected ArrayList<String> dataTypes;
+    protected ArrayList<DataType> dataTypes;
 
     public RowEntry()
     {
         data = new ArrayList();
-        dataTypes = new ArrayList<String>();
+        dataTypes = new ArrayList<DataType>();
     }
 
     public int getLength()
@@ -44,43 +46,43 @@ public class RowEntry
         return data;
     }
 
-    public ArrayList<String> getDataTypes()
+    public ArrayList<DataType> getDataTypes()
     {
         return dataTypes;
     }
 
-    public String getDataType(Object o)
+    public DataType getDataType(Object o)
     {
         if (!data.contains(o))
-            return "DNE";
+            return DataType.STRING;
         else
             return dataTypes.get(data.indexOf(o));
     }
 
-    // Automating the process of determining datatypes... use a parallel arraylist with strings... it's...ok...
-    // TODO use enums instead of strings
+    // Automating the process of determining datatypes... use a parallel arraylist with enum datatype
     protected void determineDataTypes(ArrayList list)
     {
-        // Go through the list and add the correct datatype as a string.
+        // Go through the list and add the correct datatype as a DataType
         for (Object o : list)
         {
             if (o instanceof Integer)
-                dataTypes.add("integer");
+                dataTypes.add(DataType.INTEGER);
             else if (o instanceof Float)
-                dataTypes.add("float");
+                dataTypes.add(DataType.FLOAT);
             else if (o instanceof Double)
-                dataTypes.add("double");
+                dataTypes.add(DataType.DOUBLE);
             else if (o instanceof String)
-                dataTypes.add("string");
+                dataTypes.add(DataType.STRING);
             else if (o instanceof Character)
-                dataTypes.add("character");
+                dataTypes.add(DataType.CHARACTER);
             else if (o instanceof Boolean)
-                dataTypes.add("boolean");
+                dataTypes.add(DataType.BOOLEAN);
             else if (o instanceof Date)
-                dataTypes.add("date");
+                dataTypes.add(DataType.DATE);
+            else if (o instanceof Time)
+                dataTypes.add(DataType.TIME);
             else
-                dataTypes.add("string");
-
+                dataTypes.add(DataType.STRING);
         }
     }
 }

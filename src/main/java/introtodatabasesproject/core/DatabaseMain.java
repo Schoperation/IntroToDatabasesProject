@@ -74,7 +74,8 @@ public class DatabaseMain
         LocationEntry le = new LocationEntry(streetNumber, streetName, unitNumber, zipCode, city, county);
         TestEntry te = new TestEntry("k", 89);
 
-        TableCmds.insert("myTestTable", te);
+        //TableCmds.insert("myTestTable", te);
+        TableCmds.selectAll("myTestTable", te);
 
         //addAddress(streetNumber, streetName, unitNumber, zipCode, city, county);
 

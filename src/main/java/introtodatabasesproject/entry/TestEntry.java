@@ -16,8 +16,10 @@ public class TestEntry extends RowEntry
         data.add(name);
         data.add(id);
 
-        // TODO for known entries (like TestEntry), just manually specify type (with enum)
-        determineDataTypes(data);
+
+        //determineDataTypes(data);
+        dataTypes.add(DataType.STRING);
+        dataTypes.add(DataType.INTEGER);
 
         length = 2;
         primaryKeyIndex = 1;

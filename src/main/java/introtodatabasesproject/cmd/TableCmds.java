@@ -1,5 +1,6 @@
 package introtodatabasesproject.cmd;
 
+import introtodatabasesproject.entry.DataType;
 import introtodatabasesproject.entry.RowEntry;
 
 import java.sql.*;
@@ -9,6 +10,9 @@ import static introtodatabasesproject.core.DatabaseMain.*;
 // Basic table commands, can be adjusted to suit a particular table's needs
 public class TableCmds
 {
+    /*
+        SQL INSERT command
+     */
     public static void insert(String table, RowEntry entry)
     {
         // Actual sql command... in the try {} is what we'll attempt to insert
@@ -43,6 +47,84 @@ public class TableCmds
 
             pstmt.executeUpdate();
             pstmt.close();
+            conn.close();
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    /*
+        SQL SELECT * command
+     */
+    public static void selectAll(String table, RowEntry dummyEntry)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM ");
+        sb.append(table);
+
+        String sql = sb.toString();
+
+        // Now do the actual command stuff
+        try
+        {
+            Connection conn = DriverManager.getConnection(DB_ADDRESS, USER, PASSWORD);
+
+            // Turn the sql command into a prepared statement
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet resultSet = pstmt.executeQuery(sql);
+
+            System.out.println(table);
+            System.out.println("---------------------------------------------");
+
+            // Iterate through resultset and print out results TODO convert this to tomcat page
+            while (resultSet.next())
+            {
+                // Alright, go through the columns and print them out
+                int i = 1;
+                for (DataType dt : dummyEntry.getDataTypes())
+                {
+                    switch (dt)
+                    {
+                        case INTEGER:
+                            System.out.print(" " + resultSet.getInt(i) + " ");
+                            break;
+                        case FLOAT:
+                            System.out.print(" " + resultSet.getFloat(i) + " ");
+                            break;
+                        case DOUBLE:
+                            System.out.print(" " + resultSet.getDouble(i) + " ");
+                            break;
+                        case STRING:
+                            System.out.print(" " + resultSet.getString(i) + " ");
+                            break;
+                        case CHARACTER:
+                            System.out.print(" " + resultSet.getObject(i) + " ");
+                            break;
+                        case BOOLEAN:
+                            System.out.print(" " + resultSet.getBoolean(i) + " ");
+                            break;
+                        case DATE:
+                            System.out.print(" " + resultSet.getDate(i) + " ");
+                            break;
+                        case TIME:
+                            System.out.print(" " + resultSet.getTime(i) + " ");
+                            break;
+                        default:
+                            break;
+                    }
+
+                    i++;
+                }
+
+                System.out.print("\n");
+            }
+
+            // Close everything
+            resultSet.close();
+            pstmt.close();
+            conn.close();
         }
         catch (SQLException e)
         {
@@ -54,22 +136,37 @@ public class TableCmds
     private static PreparedStatement fillInBlanks(PreparedStatement pstmt, RowEntry entry) throws SQLException
     {
         int i = 1;
-        for (String s : entry.getDataTypes())
+        for (DataType dt : entry.getDataTypes())
         {
-            if (s.equalsIgnoreCase("integer"))
-                pstmt.setInt(i, (Integer) entry.getData().get(i-1));
-            else if (s.equalsIgnoreCase("float"))
-                pstmt.setFloat(i, (Float) entry.getData().get(i-1));
-            else if (s.equalsIgnoreCase("double"))
-                pstmt.setDouble(i, (Double) entry.getData().get(i-1));
-            else if (s.equalsIgnoreCase("string"))
-                pstmt.setString(i, (String) entry.getData().get(i-1));
-            else if (s.equalsIgnoreCase("character"))
-                pstmt.setObject(i, (Character) entry.getData().get(i-1));
-            else if (s.equalsIgnoreCase("date"))
-                pstmt.setDate(i, (Date) entry.getData().get(i-1));
-            else if (s.equalsIgnoreCase("boolean"))
-                pstmt.setBoolean(i, (Boolean) entry.getData().get(i-1));
+            switch (dt)
+            {
+                case INTEGER:
+                    pstmt.setInt(i, (Integer) entry.getData().get(i-1));
+                    break;
+                case FLOAT:
+                    pstmt.setFloat(i, (Float) entry.getData().get(i-1));
+                    break;
+                case DOUBLE:
+                    pstmt.setDouble(i, (Double) entry.getData().get(i-1));
+                    break;
+                case STRING:
+                    pstmt.setString(i, (String) entry.getData().get(i-1));
+                    break;
+                case CHARACTER:
+                    pstmt.setObject(i, (Character) entry.getData().get(i-1));
+                    break;
+                case BOOLEAN:
+                    pstmt.setBoolean(i, (Boolean) entry.getData().get(i-1));
+                    break;
+                case DATE:
+                    pstmt.setDate(i, (Date) entry.getData().get(i-1));
+                    break;
+                case TIME:
+                    pstmt.setTime(i, (Time) entry.getData().get(i-1));
+                    break;
+                default:
+                    break;
+            }
 
             i++;
         }

@@ -20,7 +20,14 @@ public class LocationEntry extends RowEntry
         data.add(city);
         data.add(county);
 
-        determineDataTypes(data);
+        //determineDataTypes(data);
+        dataTypes.add(DataType.INTEGER);
+        dataTypes.add(DataType.STRING);
+        dataTypes.add(DataType.INTEGER);
+        dataTypes.add(DataType.INTEGER);
+        dataTypes.add(DataType.STRING);
+        dataTypes.add(DataType.STRING);
+
 
         length = 6;
         primaryKeyIndex = 0;
