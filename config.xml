@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <database>
+        <username>system</username>
+        <password>data21</password>
+        <!-- jdbc:oracle:thin:@hostname:port:service-name -->
+        <database-url>jdbc:oracle:thin:@localhost:1521:orcl</database-url>
+    </database>
+</config>

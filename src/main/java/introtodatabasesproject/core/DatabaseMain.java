@@ -3,20 +3,29 @@ package introtodatabasesproject.core;
 import introtodatabasesproject.cmd.TableCmds;
 import introtodatabasesproject.entry.LocationEntry;
 import introtodatabasesproject.entry.TestEntry;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 
 public class DatabaseMain
 {
-    // Some constants.. username, password, address of database...
-    public static final String USER = "system";
-    public static final String PASSWORD = "data21";
-    public static final String DB_ADDRESS = "jdbc:oracle:thin:@localhost:1521:orcl";
+    // Some constants.. username, password, address of database... initialized in loadConfig();
+    public static String username;
+    public static String password;
+    public static String dbAddress;
 
     public static void main(String args[])
     {
-        System.out.println("Welcome to the crappy databases project!");
+        System.out.println("Loading java init code...");
 
         // Load driver
         try
@@ -37,31 +46,9 @@ public class DatabaseMain
         else
             System.out.println("WARNING: Can't find apache-tomcat-9.0.34 directory! Put it in the main directory (outside src)!");
 
-        // Ask for info, temporary stuff
-        Scanner scan = new Scanner(System.in);
-
-        /*
-        System.out.println("StreetNumber? ");
-        int streetNumber = scan.nextInt();
-        scan.nextLine();
-
-        System.out.println("StreetName? ");
-        String streetName = scan.nextLine();
-
-        System.out.println("UnitNumber? ");
-        int unitNumber = scan.nextInt();
-
-        System.out.println("ZipCode? ");
-        int zipCode = scan.nextInt();
-
-        System.out.println("City? ");
-        String city = scan.nextLine();
-        scan.nextLine();
-
-        System.out.println("County? ");
-        String county = scan.nextLine();
-        scan.nextLine();
-        */
+        // Load config file
+        System.out.println("Loading config file...");
+        loadConfig();
 
         // testing stuff
         int streetNumber = 777;
@@ -76,9 +63,38 @@ public class DatabaseMain
 
         //TableCmds.insert("myTestTable", te);
         TableCmds.selectAll("myTestTable", te);
+    }
 
-        //addAddress(streetNumber, streetName, unitNumber, zipCode, city, county);
+    private static void loadConfig()
+    {
+        File config = new File("config.xml");
 
-        scan.close();
+        try
+        {
+            // Create document builder
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            // Turn our loaded file into a document instance
+            Document document = builder.parse(config);
+            document.getDocumentElement().normalize();
+
+            // Grab a list of all database nodes (aka 1), turn it into a single one
+            NodeList nodeList = document.getElementsByTagName("database");
+            Node node = nodeList.item(0);
+
+            // Now grab each child's content and set it as our username, oassword, and dbaddress
+            if (node.getNodeType() == Node.ELEMENT_NODE)
+            {
+                Element element = (Element) node;
+                username = element.getElementsByTagName("username").item(0).getTextContent();
+                password = element.getElementsByTagName("password").item(0).getTextContent();
+                dbAddress = element.getElementsByTagName("database-url").item(0).getTextContent();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

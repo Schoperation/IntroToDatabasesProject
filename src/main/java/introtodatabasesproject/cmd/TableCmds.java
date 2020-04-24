@@ -40,7 +40,7 @@ public class TableCmds
         // Now do the actual command stuff
         try
         {
-            Connection conn = DriverManager.getConnection(DB_ADDRESS, USER, PASSWORD);
+            Connection conn = DriverManager.getConnection(dbAddress, username, password);
 
             // Turn the sql command into a prepared statement, and fill in the question marks.
             PreparedStatement pstmt = fillInBlanks(conn.prepareStatement(sql), entry);
@@ -69,7 +69,7 @@ public class TableCmds
         // Now do the actual command stuff
         try
         {
-            Connection conn = DriverManager.getConnection(DB_ADDRESS, USER, PASSWORD);
+            Connection conn = DriverManager.getConnection(dbAddress, username, password);
 
             // Turn the sql command into a prepared statement
             PreparedStatement pstmt = conn.prepareStatement(sql);
