@@ -1,20 +1,15 @@
 package introtodatabasesproject.core;
 
-import introtodatabasesproject.cmd.TableCmds;
 import introtodatabasesproject.entry.LocationEntry;
 import introtodatabasesproject.entry.TestEntry;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 
 public class DatabaseMain
 {
@@ -22,6 +17,7 @@ public class DatabaseMain
     public static String username;
     public static String password;
     public static String dbAddress;
+    public static String tomcatDir;
 
     public static void main(String args[])
     {
@@ -38,17 +34,17 @@ public class DatabaseMain
             System.out.println("Couldn't load the driver! Make sure ojdbc6.jar is in the libs folder!");
         }
 
+        // Load config file
+        System.out.println("Loading config file...");
+        loadConfig();
+
         // See if Tomcat is installed in the project directory (starts off in IntroToDatabasesProject folder, emcompassing entire project)
-        if (new File("apache-tomcat-9.0.34/").exists())
+        if (new File(tomcatDir).exists())
         {
             System.out.println("Tomcat directory detected. Hallelujah!");
         }
         else
-            System.out.println("WARNING: Can't find apache-tomcat-9.0.34 directory! Put it in the main directory (outside src)!");
-
-        // Load config file
-        System.out.println("Loading config file...");
-        loadConfig();
+            System.out.println("WARNING: Can't find apache-tomcat-[version] directory! Put it in the main directory (outside src)!");
 
         // testing stuff
         int streetNumber = 777;
@@ -90,6 +86,7 @@ public class DatabaseMain
                 username = element.getElementsByTagName("username").item(0).getTextContent();
                 password = element.getElementsByTagName("password").item(0).getTextContent();
                 dbAddress = element.getElementsByTagName("database-url").item(0).getTextContent();
+                tomcatDir = element.getElementsByTagName("tomcat-dir").item(0).getTextContent();
             }
         }
         catch (Exception e)

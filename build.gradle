@@ -1,11 +1,11 @@
 plugins {
     id 'java'
     id 'war'
-
+    //id 'org.gretty' version '2.2.0'
 }
 
 group 'introtodatabases'
-version '0.1.0'
+//version '0.1.0'
 
 repositories {
     mavenCentral()
@@ -19,6 +19,12 @@ dependencies {
 
 task hello {
     doLast {
-        println "$projectDir"
+        println "$libsDir"
     }
+}
+
+task copyWar(type: Copy) {
+    from file("$buildDir/libs/IntroToDatabases.war")
+    into file("$projectDir/src/main/webapp/")
+    println "Copied war file into src/main/webapp"
 }

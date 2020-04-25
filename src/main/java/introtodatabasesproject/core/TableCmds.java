@@ -1,4 +1,4 @@
-package introtodatabasesproject.cmd;
+package introtodatabasesproject.core;
 
 import introtodatabasesproject.entry.DataType;
 import introtodatabasesproject.entry.RowEntry;
