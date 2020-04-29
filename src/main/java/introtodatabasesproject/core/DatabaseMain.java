@@ -17,7 +17,6 @@ public class DatabaseMain
     public static String username;
     public static String password;
     public static String dbAddress;
-    public static String tomcatDir;
 
     public static void main(String args[])
     {
@@ -38,14 +37,6 @@ public class DatabaseMain
         System.out.println("Loading config file...");
         loadConfig();
 
-        // See if Tomcat is installed in the project directory (starts off in IntroToDatabasesProject folder, emcompassing entire project)
-        if (new File(tomcatDir).exists())
-        {
-            System.out.println("Tomcat directory detected. Hallelujah!");
-        }
-        else
-            System.out.println("WARNING: Can't find apache-tomcat-[version] directory! Put it in the main directory (outside src)!");
-
         // testing stuff
         int streetNumber = 777;
         String streetName = "vyra way";
@@ -58,12 +49,14 @@ public class DatabaseMain
         TestEntry te = new TestEntry("k", 89);
 
         //TableCmds.insert("myTestTable", te);
-        TableCmds.selectAll("myTestTable", te);
+        //TableCmds.selectAll("myTestTable", te);
     }
 
     private static void loadConfig()
     {
-        File config = new File("config.xml");
+        // Do ../ twice to get out of core, then introtodatabasesproject
+        // TODO make this not hell
+        File config = new File("../conf/project_config.xml");
 
         try
         {
@@ -86,12 +79,12 @@ public class DatabaseMain
                 username = element.getElementsByTagName("username").item(0).getTextContent();
                 password = element.getElementsByTagName("password").item(0).getTextContent();
                 dbAddress = element.getElementsByTagName("database-url").item(0).getTextContent();
-                tomcatDir = element.getElementsByTagName("tomcat-dir").item(0).getTextContent();
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
+            System.out.println(config.getAbsolutePath());
         }
     }
 }

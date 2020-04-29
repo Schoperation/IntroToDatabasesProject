@@ -18,12 +18,14 @@ public class RowEntry
     protected int length;
     protected int primaryKeyIndex;
     protected ArrayList data;
+    protected ArrayList<String> dataLabels;
     protected ArrayList<DataType> dataTypes;
 
     public RowEntry()
     {
         data = new ArrayList();
         dataTypes = new ArrayList<DataType>();
+        dataLabels = new ArrayList<String>();
     }
 
     public int getLength()
@@ -49,6 +51,11 @@ public class RowEntry
     public ArrayList<DataType> getDataTypes()
     {
         return dataTypes;
+    }
+    
+    public ArrayList<String> getDataLabels()
+    {
+        return dataLabels;
     }
 
     public DataType getDataType(Object o)

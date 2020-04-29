@@ -8,6 +8,7 @@ public class TestEntry extends RowEntry
 
         varchar(50) name, int id
      */
+    public static final TestEntry DUMMY_ENTRY = new TestEntry("hello", 1);
 
     public TestEntry(String name, int id)
     {
@@ -20,6 +21,9 @@ public class TestEntry extends RowEntry
         //determineDataTypes(data);
         dataTypes.add(DataType.STRING);
         dataTypes.add(DataType.INTEGER);
+
+        dataLabels.add("Name");
+        dataLabels.add("ID");
 
         length = 2;
         primaryKeyIndex = 1;

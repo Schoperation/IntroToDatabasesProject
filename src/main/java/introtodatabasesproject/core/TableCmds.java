@@ -3,6 +3,8 @@ package introtodatabasesproject.core;
 import introtodatabasesproject.entry.DataType;
 import introtodatabasesproject.entry.RowEntry;
 
+import javax.xml.transform.Result;
+import java.io.PrintWriter;
 import java.sql.*;
 
 import static introtodatabasesproject.core.DatabaseMain.*;
@@ -58,7 +60,7 @@ public class TableCmds
     /*
         SQL SELECT * command
      */
-    public static void selectAll(String table, RowEntry dummyEntry)
+    public static ResultSet selectAll(String table, RowEntry dummyEntry)
     {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM ");
@@ -67,69 +69,26 @@ public class TableCmds
         String sql = sb.toString();
 
         // Now do the actual command stuff
+        ResultSet resultSet = null;
+
         try
         {
             Connection conn = DriverManager.getConnection(dbAddress, username, password);
 
             // Turn the sql command into a prepared statement
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet resultSet = pstmt.executeQuery(sql);
-
-            System.out.println(table);
-            System.out.println("---------------------------------------------");
-
-            // Iterate through resultset and print out results TODO convert this to tomcat page
-            while (resultSet.next())
-            {
-                // Alright, go through the columns and print them out
-                int i = 1;
-                for (DataType dt : dummyEntry.getDataTypes())
-                {
-                    switch (dt)
-                    {
-                        case INTEGER:
-                            System.out.print(" " + resultSet.getInt(i) + " ");
-                            break;
-                        case FLOAT:
-                            System.out.print(" " + resultSet.getFloat(i) + " ");
-                            break;
-                        case DOUBLE:
-                            System.out.print(" " + resultSet.getDouble(i) + " ");
-                            break;
-                        case STRING:
-                            System.out.print(" " + resultSet.getString(i) + " ");
-                            break;
-                        case CHARACTER:
-                            System.out.print(" " + resultSet.getObject(i) + " ");
-                            break;
-                        case BOOLEAN:
-                            System.out.print(" " + resultSet.getBoolean(i) + " ");
-                            break;
-                        case DATE:
-                            System.out.print(" " + resultSet.getDate(i) + " ");
-                            break;
-                        case TIME:
-                            System.out.print(" " + resultSet.getTime(i) + " ");
-                            break;
-                        default:
-                            break;
-                    }
-
-                    i++;
-                }
-
-                System.out.print("\n");
-            }
+            resultSet = pstmt.executeQuery(sql);
 
             // Close everything
-            resultSet.close();
             pstmt.close();
-            conn.close();
+            // TODO make this global and acutally work conn.close();
         }
         catch (SQLException e)
         {
             System.err.println(e.getMessage());
         }
+
+        return resultSet;
     }
 
     // Fills in a preparedstatement's question marks
@@ -172,5 +131,60 @@ public class TableCmds
         }
 
         return pstmt;
+    }
+
+    /*
+        After a post request is made, we gotta actually fill in the table, so here it is, since the same code will be used multiple times
+     */
+    public static void populateHTMLTable(ResultSet resultSet, PrintWriter writer, RowEntry dummyEntry) throws SQLException {
+        // Iterate through the result set
+
+        while (resultSet.next())
+        {
+            // Each iteration of the resultset is ONE ROW.
+            writer.println("<tr>");
+
+            int i = 1;
+            for (DataType type : dummyEntry.getDataTypes())
+            {
+                // Each iteration through here is ONE CELL.
+                writer.println("<td>");
+
+                switch (type)
+                {
+                    case INTEGER:
+                        writer.println(resultSet.getInt(i));
+                        break;
+                    case FLOAT:
+                        writer.println(resultSet.getFloat(i));
+                        break;
+                    case DOUBLE:
+                        writer.println(resultSet.getDouble(i));
+                        break;
+                    case STRING:
+                        writer.println(resultSet.getString(i));
+                        break;
+                    case CHARACTER:
+                        writer.println(resultSet.getObject(i));
+                        break;
+                    case BOOLEAN:
+                        writer.println(resultSet.getBoolean(i));
+                        break;
+                    case DATE:
+                        writer.print(resultSet.getDate(i));
+                        break;
+                    case TIME:
+                        writer.println(resultSet.getTime(i));
+                        break;
+                    default:
+                        break;
+                }
+
+                writer.println("</td>");
+                i++;
+            }
+
+            writer.println("</tr>");
+        }
     }
 }
