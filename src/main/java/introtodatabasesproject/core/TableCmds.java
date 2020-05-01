@@ -60,7 +60,7 @@ public class TableCmds
     /*
         SQL SELECT * command
      */
-    public static ResultSet selectAll(String table, RowEntry dummyEntry)
+    public static ResultSet selectAll(String table, Connection conn, PreparedStatement pstmt) throws SQLException
     {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM ");
@@ -70,24 +70,10 @@ public class TableCmds
 
         // Now do the actual command stuff
         ResultSet resultSet = null;
+        pstmt = conn.prepareStatement(sql);
+        resultSet = pstmt.executeQuery(sql);
 
-        try
-        {
-            Connection conn = DriverManager.getConnection(dbAddress, username, password);
-
-            // Turn the sql command into a prepared statement
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            resultSet = pstmt.executeQuery(sql);
-
-            // Close everything
-            pstmt.close();
-            // TODO make this global and acutally work conn.close();
-        }
-        catch (SQLException e)
-        {
-            System.err.println(e.getMessage());
-        }
-
+        // resultSet, pstmt, and conn are closed in MainServlet and SelectAll, so no need to do it here
         return resultSet;
     }
 

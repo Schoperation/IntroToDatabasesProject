@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @WebServlet("/mainServlet")
@@ -27,13 +30,39 @@ public class MainServlet extends HttpServlet
         // Load database
         DatabaseMain.main(new String[2]);
 
+        // Create connection
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try
+        {
+            conn = DriverManager.getConnection(DatabaseMain.dbAddress, DatabaseMain.username, DatabaseMain.password);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        // Write out html and css code common for all pages
+        PrintWriter writer = response.getWriter();
+
+        // CSS for styling the table
+        writer.println("<head>");
+        writer.println("<style>");
+        writer.println("table, th, td {");
+        writer.println("border: 1px solid black; background-color: #b3b3b3; padding: 5px;");
+        writer.println("}");
+        writer.println("</style>");
+        writer.println("</head>");
+
+        writer.println("<a href=../IntroToDatabases>Go back</a><br>");
+
         // Figure out what queryType was, then fire corresponding method
         switch (request.getParameter("queryType"))
         {
             case "selectAll":
                 SelectAll sa = new SelectAll();
                 try {
-                    sa.execute(request, response);
+                    sa.execute(request, response, conn, pstmt);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -45,13 +74,18 @@ public class MainServlet extends HttpServlet
             default:
                 break;
         }
-        // TODO flesh this out
-        // Grab form elements
-        String table = request.getParameter("table");
 
-        // Output/write html code
-        PrintWriter writer = response.getWriter();
-        writer.println("<h1>Results for table " + table + ":</h1>");
         writer.close();
+
+        // Close prepared statement and connection
+        try
+        {
+            conn.close();
+            pstmt.close();
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
     }
 }

@@ -12,6 +12,8 @@
         {
             var list = document.getElementById("queryType");
             var elementValue = list.options[list.selectedIndex].value;
+
+            <!-- block = shown, none = hidden ... i know its weird -->
             if (elementValue == "selectAll")
             {
                 document.getElementById("selectAll").style.display = "block";
@@ -22,7 +24,6 @@
                 document.getElementById("selectAll").style.display = "none";
                 document.getElementById("selectSome").style.display = "block";
             }
-
         }
 
     </script>
@@ -45,15 +46,11 @@
 
     <div id="selectAll">
         <label for="table1">Select all elements from </label>
-        <select id="table1" name="table1">
-            <option value="myTestTable">myTestTable</option>
-
-        </select>
     </div>
 
     <div id="selectSome">
-        <label for="table2">Select...</label>
-        <input type="checkbox" value="gay" />
+        <label for="table1">Select...</label>
+        <input type="checkbox" value="ahhh" />
     </div>
 
     <div id="selectPremade">
@@ -64,6 +61,12 @@
 
     <div id="customQuery">
     </div>
+
+    <!-- Drop down with all tables -->
+    <select id="table1" name="table1">
+        <option value="myTestTable">myTestTable</option>
+
+    </select>
 
     <input type="submit" value="Submit Query" />
     </form>
