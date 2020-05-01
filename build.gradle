@@ -17,14 +17,17 @@ dependencies {
     implementation files('lib/ojdbc6.jar')
 }
 
-task hello {
-    doLast {
-        println "$libsDir"
+task cleanAndCopy {
+    delete {
+        delete '/apache-tomcat-9.0.34/webapps/IntroToDatabases'
+        delete '/apache-tomcat-9.0.34/webapps/IntroToDatabases.war'
     }
+    copy {
+        from file("$buildDir/libs/IntroToDatabases.war")
+        into file("$projectDir/apache-tomcat-9.0.34/webapps/")
+    }
+
+    println "Copied war file into apache-tomcat-9.0.34/webapps/"
 }
 
-task copyWar(type: Copy) {
-    from file("$buildDir/libs/IntroToDatabases.war")
-    into file("$projectDir/src/main/webapp/")
-    println "Copied war file into src/main/webapp"
-}
+

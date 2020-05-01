@@ -3,7 +3,6 @@ package introtodatabasesproject.core;
 import introtodatabasesproject.entry.DataType;
 import introtodatabasesproject.entry.RowEntry;
 
-import javax.xml.transform.Result;
 import java.io.PrintWriter;
 import java.sql.*;
 
