@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Iterator;
 
 @WebServlet("/mainServlet")
 public class MainServlet extends HttpServlet
@@ -35,6 +36,7 @@ public class MainServlet extends HttpServlet
         PreparedStatement pstmt = null;
         try
         {
+            System.out.println("Creating connection to database...");
             conn = DriverManager.getConnection(DatabaseMain.dbAddress, DatabaseMain.username, DatabaseMain.password);
         }
         catch (SQLException e)
@@ -56,6 +58,19 @@ public class MainServlet extends HttpServlet
 
         writer.println("<a href=../IntroToDatabases>Go back</a><br>");
 
+        // TODO temp
+        Iterator<String[]> iterator = request.getParameterMap().values().iterator();
+
+        while (iterator.hasNext())
+        {
+
+            System.out.println("new thing");
+            for (String s : iterator.next())
+            {
+                System.out.println(s);
+            }
+        }
+
         // Figure out what queryType was, then fire corresponding method
         switch (request.getParameter("queryType"))
         {
@@ -69,8 +84,16 @@ public class MainServlet extends HttpServlet
                 break;
             case "selectSome":
             case "selectPremade":
-            case "addEntry":
             case "customQuery":
+                break;
+            case "addEntry":
+                AddEntry ae = new AddEntry();
+                try {
+                    ae.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                break;
             default:
                 break;
         }

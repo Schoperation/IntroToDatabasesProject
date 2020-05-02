@@ -2,11 +2,10 @@ package introtodatabasesproject.core;
 
 import introtodatabasesproject.entry.DataType;
 import introtodatabasesproject.entry.RowEntry;
+import introtodatabasesproject.entry.TestEntry;
 
 import java.io.PrintWriter;
 import java.sql.*;
-
-import static introtodatabasesproject.core.DatabaseMain.*;
 
 // Basic table commands, can be adjusted to suit a particular table's needs
 public class TableCmds
@@ -14,7 +13,7 @@ public class TableCmds
     /*
         SQL INSERT command
      */
-    public static void insert(String table, RowEntry entry)
+    public static void insert(String table, RowEntry entry, Connection conn, PreparedStatement pstmt) throws SQLException
     {
         // Actual sql command... in the try {} is what we'll attempt to insert
         StringBuilder sb = new StringBuilder();
@@ -38,22 +37,14 @@ public class TableCmds
         // INSERT INTO [table] VALUES (?,?,?,...,?);
         String sql = sb.toString();
 
-        // Now do the actual command stuff
-        try
-        {
-            Connection conn = DriverManager.getConnection(dbAddress, username, password);
+        // Actual command execution
+        pstmt = fillInBlanks(conn.prepareStatement(sql), entry);
+        pstmt.executeUpdate();
 
-            // Turn the sql command into a prepared statement, and fill in the question marks.
-            PreparedStatement pstmt = fillInBlanks(conn.prepareStatement(sql), entry);
-
-            pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
-        }
-        catch (SQLException e)
-        {
-            System.err.println(e.getMessage());
-        }
+        // Commit changes
+        PreparedStatement pstmt1 = conn.prepareStatement("COMMIT");
+        pstmt1.executeUpdate();
+        pstmt1.close();
     }
 
     /*
@@ -170,6 +161,16 @@ public class TableCmds
             }
 
             writer.println("</tr>");
+        }
+    }
+
+    public static RowEntry getDummyEntry(String table)
+    {
+        switch (table)
+        {
+            case "myTestTable":
+            default:
+                return TestEntry.DUMMY_ENTRY;
         }
     }
 }

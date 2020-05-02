@@ -18,15 +18,18 @@ dependencies {
 }
 
 task cleanAndCopy {
-    delete {
-        delete '/apache-tomcat-9.0.34/webapps/IntroToDatabases'
-        delete '/apache-tomcat-9.0.34/webapps/IntroToDatabases.war'
+    doFirst {
+        delete {
+            delete '/apache-tomcat-9.0.34/webapps/IntroToDatabases'
+            delete '/apache-tomcat-9.0.34/webapps/IntroToDatabases.war'
+        }
     }
-    copy {
-        from file("$buildDir/libs/IntroToDatabases.war")
-        into file("$projectDir/apache-tomcat-9.0.34/webapps/")
+    doLast {
+        copy {
+            from file("$buildDir/libs/IntroToDatabases.war")
+            into file("$projectDir/apache-tomcat-9.0.34/webapps/")
+        }
     }
-
     println "Copied war file into apache-tomcat-9.0.34/webapps/"
 }
 

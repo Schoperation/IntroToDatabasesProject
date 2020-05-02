@@ -25,16 +25,7 @@ public class SelectAll implements IQuery
     {
         // Only variable we need to deal with is table1, aka the name of the table
         String table = request.getParameter("table1");
-        RowEntry dummy;
-
-        // TODO flesh out switch statement
-        switch (table)
-        {
-            case "myTestTable":
-            default:
-                dummy = TestEntry.DUMMY_ENTRY;
-                break;
-        }
+        RowEntry dummy = TableCmds.getDummyEntry(table);
 
         // Grab results of select all command
         ResultSet resultSet = TableCmds.selectAll(table, conn, pstmt);
