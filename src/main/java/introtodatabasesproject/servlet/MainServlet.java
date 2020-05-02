@@ -82,7 +82,6 @@ public class MainServlet extends HttpServlet
                     throwables.printStackTrace();
                 }
                 break;
-            case "selectSome":
             case "selectPremade":
             case "customQuery":
                 break;

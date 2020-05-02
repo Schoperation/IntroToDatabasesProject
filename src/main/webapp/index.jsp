@@ -17,15 +17,6 @@
             if (elementValue == "selectAll")
             {
                 document.getElementById("selectAll").style.display = "block";
-                document.getElementById("selectSome").style.display = "none";
-                document.getElementById("selectPremade").style.display = "none";
-                document.getElementById("customQuery").style.display = "none";
-                document.getElementById("addEntry").style.display = "none";
-            }
-            else if (elementValue == "selectSome")
-            {
-                document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectSome").style.display = "block";
                 document.getElementById("selectPremade").style.display = "none";
                 document.getElementById("customQuery").style.display = "none";
                 document.getElementById("addEntry").style.display = "none";
@@ -33,7 +24,6 @@
             else if (elementValue == "selectPremade")
             {
                 document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectSome").style.display = "none";
                 document.getElementById("selectPremade").style.display = "block";
                 document.getElementById("customQuery").style.display = "none";
                 document.getElementById("addEntry").style.display = "none";
@@ -41,7 +31,6 @@
             else if (elementValue == "customQuery")
             {
                 document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectSome").style.display = "none";
                 document.getElementById("selectPremade").style.display = "none";
                 document.getElementById("customQuery").style.display = "block";
                 document.getElementById("addEntry").style.display = "none";
@@ -49,7 +38,6 @@
             else if (elementValue == "addEntry")
             {
                 document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectSome").style.display = "none";
                 document.getElementById("selectPremade").style.display = "none";
                 document.getElementById("customQuery").style.display = "none";
                 document.getElementById("addEntry").style.display = "block";
@@ -84,35 +72,22 @@
     </script>
 </head>
 <body onload=changeForm()>
-    <h1>Database Project</h1>
-    <p>If you can read this, congrats you are not dumb...</p>
+    <h1>Database Project - Spring 2020/h1>
+    <h4>Find the perfect home; or owner; or whatever!</h4><p />
 
     <!-- This is the form that will be submitted and processed by MainServlet -->
     <form action="mainServlet" method="post">
 
     <h3>What would you like to do?</h3><br />
     <select id="queryType" name="queryType" onchange=changeForm()>
-        <option value="selectAll" selected="selected">View an entire table</option>
-        <option value="selectSome">View entries that follow a condition</option>
+        <option value="selectAll" selected="selected">View an entire datatable</option>
         <option value="selectPremade">Use a premade query</option>
         <option value="customQuery">Enter in a custom query</option>
         <option value="addEntry">Add an entry to a table</option>
     </select><p />
 
     <div id="selectAll">
-        <label for="table1">Select all elements from </label>
-    </div>
-
-    <div id="selectSome">
-        <label for="table1">Select...</label>
-        <div id="myTestTable_divselect">
-            <label for="myTestTable_name1">Name: </label>
-            <input type="checkbox" id="myTestTable_name1" name="myTestTable_name1" /><br />
-            <label for="myTestTable_id1">ID: </label>
-            <input type="checkbox" id="myTestTable_id1" name="myTestTable_id1" /><br />
-        </div>
-
-        where <input type="text" name="condition" value="condition" size=20 />
+        <label for="table1">See all entries in: </label>
     </div>
 
     <div id="selectPremade">

@@ -25,7 +25,7 @@ public class TestEntry extends RowEntry
         dataLabels.add("Name");
         dataLabels.add("ID");
 
-        length = 2;
+        length = data.size();
         primaryKeyIndex = 1;
     }
 }

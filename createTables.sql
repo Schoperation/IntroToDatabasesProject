@@ -1,7 +1,6 @@
 -- Creates the tables
 
 CREATE TABLE Agent ( 
-client VARCHAR(50) NOT NULL,
 percentCommission INT NOT NULL,
 company VARCHAR(50) NOT NULL,
 agentID INT PRIMARY KEY
@@ -16,12 +15,13 @@ yearlyIncome INT NOT NULL,
 profession VARCHAR(40) NOT NULL
 );
 
+-- If it has an agent, then the house is available, otherwise it has an owner
 CREATE TABLE Home ( 
 homeID INT PRIMARY KEY, 
 floors INT NOT NULL, 
 bedrooms INT NOT NULL,
 bathrooms INT NOT NULL, 
-landAcres INT NOT NULL,
+landAcres FLOAT NOT NULL,
 floorSpace INT NOT NULL,
 type VARCHAR(50) NOT NULL,
 yearConstructed INT NOT NULL,
@@ -30,7 +30,7 @@ ssNumber INT,
 agentID INT,
 FOREIGN KEY (ssNumber) REFERENCES Owner(ssNumber),
 CONSTRAINT Chk_Type CHECK ((floorSpace >= 6000 AND landAcres >= 2 AND type = 'Mansion') OR (floors = 1 AND type = 'Apartment') OR (type = 'Townhome') OR (type = 'Condo')),
-CONSTRAINT Chk_People CHECK ((agentID IS NULL AND ssNumber IS NOT NULL) OR (agentID IS NOT NULL AND ssNumber IS NULL))
+CONSTRAINT Chk_People CHECK (NOT (agentID IS NULL AND ssNumber IS NULL))
 );
 
 CREATE TABLE Location ( 
@@ -53,6 +53,17 @@ year INT NOT NULL,
 modelName VARCHAR(40) PRIMARY KEY,
 homeID INT NOT NULL,
 FOREIGN KEY (homeID) REFERENCES Home(homeID)
+);
+
+CREATE TABLE HomeTransaction (
+transID INT PRIMARY KEY,
+homeID INT NOT NULL,
+ssNumber INT NOT NULL,
+agentID INT NOT NULL,
+price INT NOT NULL,
+FOREIGN KEY (homeID) REFERENCES Home(homeID),
+FOREIGN KEY (ssNumber) REFERENCES Owner(ssNumber),
+FOREIGN KEY (agentID) REFERENCES Agent(agentID)
 );
 
 -- Add some dummy entries

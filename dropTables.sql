@@ -1,7 +1,8 @@
 -- Drops the tables
 
-DROP TABLE Location;
+DROP TABLE HomeTransaction;
 DROP TABLE Appliance;
-DROP TABLE Agent;
+DROP TABLE Location;
 DROP TABLE Home;
 DROP TABLE Owner;
+DROP TABLE Agent;

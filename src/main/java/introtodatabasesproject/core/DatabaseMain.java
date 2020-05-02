@@ -1,7 +1,5 @@
 package introtodatabasesproject.core;
 
-import introtodatabasesproject.entry.LocationEntry;
-import introtodatabasesproject.entry.TestEntry;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -36,20 +34,6 @@ public class DatabaseMain
         // Load config file
         System.out.println("Loading config file...");
         loadConfig();
-
-        // testing stuff
-        int streetNumber = 777;
-        String streetName = "vyra way";
-        int unitNumber = 69;
-        int zipCode = 90930;
-        String city = "ussl";
-        String county = "rotterdam";
-
-        LocationEntry le = new LocationEntry(streetNumber, streetName, unitNumber, zipCode, city, county);
-        TestEntry te = new TestEntry("k", 89);
-
-        //TableCmds.insert("myTestTable", te);
-        //TableCmds.selectAll("myTestTable", te);
     }
 
     private static void loadConfig()
