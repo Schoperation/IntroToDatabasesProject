@@ -1,7 +1,5 @@
 package introtodatabasesproject.entry;
 
-import javax.xml.stream.Location;
-
 public class LocationEntry extends RowEntry
 {
 

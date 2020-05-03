@@ -18,56 +18,46 @@
 
     <h3>What would you like to do?</h3><br />
     <select id="queryType" name="queryType" onchange=changeForm()>
-        <option value="selectAll" selected="selected">View an entire datatable</option>
-        <option value="selectPremade">Use a premade query</option>
-        <option value="customQuery">Enter in a custom query</option>
-        <option value="addEntry">Add an entry to a table</option>
+        <option value="selectHome" selected="selected">Find a home...</option>
+        <option value="selectOwner">Find an owner...</option>
+        <option value="selectAgent">Find an agent&#39;s total commissions</option>
         <option value="changeOwner">Change Owner/Mark a House Sold</option>
+        <option value="selectAll">View an entire datatable</option>
+        <option value="addEntry">Add an entry to a table</option>
+        <option value="customQuery">Enter in a custom query</option>
     </select><p />
 
-    <div id="selectAll">
-        <label for="table1">See all entries in: </label>
-    </div>
-
-    <div id="selectPremade">
-        <label for="premadeList">Select query: </label>
-        <select id="premadeList" name="premadeList" onchange=changePremade()>
-            <option value="premade1">List all the homes owned by a given owner in a given city</option>
-            <option value="premade2">List all the homes that were sold more than once</option>
-            <option value="premade3">Find the most expensive home an owner ever bought</option>
-            <option value="premade4">Find all the homes that include all e appliances by the same maker</option>
-            <option value="premade5">Find owners who do not own the homes they used to own</option>
-            <option value="premade6">Find the total commissions earned by an agent. Assume that commission earned is on the purchased price of a home he/she sells</option>
-            <option value="premade7">Find people who own apartments as well as mansions</option>
-            <option value="premade8">List all the homes below a price in a given city</option>
-            <option value="premade9">List owners who own all the most expensive homes in a given city</option>
-            <option value="premade10">Find homes that up for sale in a given city that meet certain buyer choices such as number of bedrooms, baths, etc</option>
+    <!-- Drop down with all tables -->
+    <div id="tableDropdown">
+        <label for="table1"><b>Table: </b></label>
+        <select id="table1" name="table1" onchange=changeTable()>
+            <option value="myTestTable">myTestTable</option>
+            <option value="Agent">Agent</option>
+            <option value="Owner">Owner</option>
+            <option value="Home" selected="selected">Home</option>
+            <option value="Location">Location</option>
+            <option value="Appliance">Appliance</option>
+            <option value="HomeTransaction">HomeTransaction</option>
         </select>
-
-        <div id="premade1">
-            <p>
-                List all homes owned by
-                <input type="text" name="premade1_owner" value="owner" size=10 />
-                in the city of
-                <input type="text" name="premade1_city" value="city" size=10 />
-            </p>
-        </div>
-        <div id="premade2"></div>
-        <div id="premade3"></div>
-        <div id="premade4"></div>
-        <div id="premade5"></div>
-        <div id="premade6"></div>
-        <div id="premade7"></div>
-        <div id="premade8"></div>
-        <div id="premade9"></div>
-        <div id="premade10"></div>
-
+    <p />
     </div>
 
-    <div id="customQuery">
-        <br>Include the SELECT</br>
-        <label for="customQueryText">Enter Oracle SQL SELECT Query: </label><br />
-        <input type="text" name="customQueryText" id="customQueryText" size=60 />
+    <div id="selectHome"></div>
+    <div id="selectOwner"></div>
+    <div id="selectAgent"></div>
+
+    <div id="changeOwner">
+        <p>Search through the tables the find ids, if needed.</p>
+        <label for="newssNumber">Enter the New Owners SS Number: </label>
+        <input type="text" id="newssNumber" name="newssNumber" size=12 /><br />
+        <label for="newHomeID">Enter the ID of the Home: </label>
+        <input type="text" id="newHomeID" name="newHomeID" size=12 /><br />
+        <label for="newPrice">Enter the Price: </label>
+        <input type="text" id="newPrice" name="newPrice" size=12 /><br />
+    </div>
+
+    <div id="selectAll">
+        <label for="table1">See all entries in the above table...</label>
     </div>
 
     <div id="addEntry">
@@ -169,27 +159,12 @@
             <input type="text" id="Owner_profession" name="Owner_profession" size=12 /><br />
         </div>
     </div>
-    <div id="changeOwner">
-        <p>Search through the tables the find ids, if needed.</p>
-        <label for="newssNumber">Enter the New Owners SS Number: </label>
-        <input type="text" id="newssNumber" name="newssNumber" size=12 /><br />
-        <label for="newHomeID">Enter the ID of the Home: </label>
-        <input type="text" id="newHomeID" name="newHomeID" size=12 /><br />
-        <label for="newPrice">Enter the Price: </label>
-        <input type="text" id="newPrice" name="newPrice" size=12 /><br />
-    </div>
 
-    <!-- Drop down with all tables -->
-    <label for="table1"><b>Table: </b></label>
-    <select id="table1" name="table1" onchange=changeTable()>
-        <option value="myTestTable">myTestTable</option>
-        <option value="Agent">Agent</option>
-        <option value="Owner">Owner</option>
-        <option value="Home" selected="selected">Home</option>
-        <option value="Location">Location</option>
-        <option value="Appliance">Appliance</option>
-        <option value="HomeTransaction">HomeTransaction</option>
-    </select>
+    <div id="customQuery">
+        <br>Include the SELECT</br>
+        <label for="customQueryText">Enter Oracle SQL SELECT Query: </label><br />
+        <input type="text" name="customQueryText" id="customQueryText" size=60 />
+    </div>
 
     <input type="submit" value="Submit Query" />
     </form>

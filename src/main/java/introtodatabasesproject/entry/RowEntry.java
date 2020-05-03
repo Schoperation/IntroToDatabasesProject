@@ -2,7 +2,6 @@ package introtodatabasesproject.entry;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Types;
 import java.util.ArrayList;
 
 public class RowEntry

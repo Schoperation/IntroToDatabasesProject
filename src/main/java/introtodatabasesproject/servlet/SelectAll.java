@@ -2,7 +2,6 @@ package introtodatabasesproject.servlet;
 
 import introtodatabasesproject.core.TableCmds;
 import introtodatabasesproject.entry.RowEntry;
-import introtodatabasesproject.entry.TestEntry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

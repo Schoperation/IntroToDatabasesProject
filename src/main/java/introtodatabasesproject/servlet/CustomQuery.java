@@ -1,7 +1,5 @@
 package introtodatabasesproject.servlet;
 
-import introtodatabasesproject.core.TableCmds;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
