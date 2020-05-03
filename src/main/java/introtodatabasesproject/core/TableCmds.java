@@ -1,8 +1,6 @@
 package introtodatabasesproject.core;
 
-import introtodatabasesproject.entry.DataType;
-import introtodatabasesproject.entry.RowEntry;
-import introtodatabasesproject.entry.TestEntry;
+import introtodatabasesproject.entry.*;
 
 import java.io.PrintWriter;
 import java.sql.*;
@@ -168,7 +166,19 @@ public class TableCmds
     {
         switch (table)
         {
-            case "myTestTable":
+            case Tables.AGENT_TABLE:
+                return AgentEntry.DUMMY_ENTRY;
+            case Tables.OWNER_TABLE:
+                return OwnerEntry.DUMMY_ENTRY;
+            case Tables.HOME_TABLE:
+                return HomeEntry.DUMMY_ENTRY;
+            case Tables.LOCATION_TABLE:
+                return LocationEntry.DUMMY_ENTRY;
+            case Tables.APPLIANCE_TABLE:
+                return ApplianceEntry.DUMMY_ENTRY;
+            case Tables.HOME_TRANSACTION_TABLE:
+                return HomeTransactionEntry.DUMMY_ENTRY;
+            case Tables.TEST_TABLE:
             default:
                 return TestEntry.DUMMY_ENTRY;
         }

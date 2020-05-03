@@ -23,11 +23,27 @@ public class HomeEntry extends RowEntry
         CONSTRAINT Chk_People CHECK (NOT (agentID IS NULL AND ssNumber IS NULL))
         );
      */
-    public static final HomeEntry DUMMY_ENTRY = new HomeEntry(1,2,3,4,5.6f,"Mansion",2007,20000,222,333);
+    public static final HomeEntry DUMMY_ENTRY = new HomeEntry(1,2,3,4,5.6f, 7, "Mansion",2007,20000,222,333);
 
-    public HomeEntry()
+    public HomeEntry(int homeID, int floors, int bedrooms, int bathrooms, float landAcres, int floorSpace, String type, int yearConstructed, int price, int ssNumber, int agentNum)
     {
         super();
+
+        data.add(homeID);
+        data.add(floors);
+        data.add(bedrooms);
+        data.add(bathrooms);
+        data.add(landAcres);
+        data.add(floorSpace);
+        data.add(type);
+        data.add(yearConstructed);
+        data.add(price);
+
+        // if any of these are -1, then they are null
+        data.add(ssNumber);
+        data.add(agentNum);
+
+        determineDataTypes(data);
 
         dataLabels.add("Home ID");
         dataLabels.add("Floors");
@@ -43,25 +59,5 @@ public class HomeEntry extends RowEntry
 
         length = 11;
         primaryKeyIndex = 0;
-    }
-
-    public HomeEntry(int homeID, int floors, int bedrooms, int bathrooms, float landAcres, String type, int yearConstructed, int price, int ssNumber, int agentNum)
-    {
-        new HomeEntry();
-
-        data.add(homeID);
-        data.add(floors);
-        data.add(bedrooms);
-        data.add(bathrooms);
-        data.add(landAcres);
-        data.add(type);
-        data.add(yearConstructed);
-        data.add(price);
-
-        // if any of these are -1, then they are null
-        data.add(ssNumber);
-        data.add(agentNum);
-
-        determineDataTypes(data);
     }
 }

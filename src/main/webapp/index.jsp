@@ -72,7 +72,7 @@
     </script>
 </head>
 <body onload=changeForm()>
-    <h1>Database Project - Spring 2020/h1>
+    <h1>Database Project - Spring 2020</h1>
     <h4>Find the perfect home; or owner; or whatever!</h4><p />
 
     <!-- This is the form that will be submitted and processed by MainServlet -->
@@ -144,7 +144,12 @@
     <!-- Drop down with all tables -->
     <select id="table1" name="table1" onchange=changeTable()>
         <option value="myTestTable">myTestTable</option>
-        <option value="Address">Address</option>
+        <option value="Agent">Agent</option>
+        <option value="Owner">Owner</option>
+        <option value="Home">Home</option>
+        <option value="Location">Location</option>
+        <option value="Appliance">Appliance</option>
+        <option value="HomeTransaction">HomeTransaction</option>
     </select>
 
     <input type="submit" value="Submit Query" />

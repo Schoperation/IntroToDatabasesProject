@@ -51,7 +51,7 @@ public class SelectAll implements IQuery
         writer.println("</tr>");
 
         // Now populate the table with the data
-        TableCmds.populateHTMLTable(resultSet, writer, TestEntry.DUMMY_ENTRY);
+        TableCmds.populateHTMLTable(resultSet, writer, dummy);
 
         writer.println("</table>");
         writer.close();
