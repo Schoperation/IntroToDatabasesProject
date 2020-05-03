@@ -39,7 +39,7 @@ public class HomeEntry extends RowEntry
         data.add(yearConstructed);
         data.add(price);
 
-        // if any of these are -1, then they are null
+        // if any of these are 0, then they are null
         data.add(ssNumber);
         data.add(agentNum);
 

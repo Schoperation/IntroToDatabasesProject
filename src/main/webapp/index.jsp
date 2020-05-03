@@ -10,32 +10,34 @@
 
         function changeForm()
         {
+            changeTable();
+
             var list = document.getElementById("queryType");
             var elementValue = list.options[list.selectedIndex].value;
 
             <!-- block = shown, none = hidden ... i know its weird -->
-            if (elementValue == "selectAll")
+            if (elementValue === "selectAll")
             {
                 document.getElementById("selectAll").style.display = "block";
                 document.getElementById("selectPremade").style.display = "none";
                 document.getElementById("customQuery").style.display = "none";
                 document.getElementById("addEntry").style.display = "none";
             }
-            else if (elementValue == "selectPremade")
+            else if (elementValue === "selectPremade")
             {
                 document.getElementById("selectAll").style.display = "none";
                 document.getElementById("selectPremade").style.display = "block";
                 document.getElementById("customQuery").style.display = "none";
                 document.getElementById("addEntry").style.display = "none";
             }
-            else if (elementValue == "customQuery")
+            else if (elementValue === "customQuery")
             {
                 document.getElementById("selectAll").style.display = "none";
                 document.getElementById("selectPremade").style.display = "none";
                 document.getElementById("customQuery").style.display = "block";
                 document.getElementById("addEntry").style.display = "none";
             }
-            else if (elementValue == "addEntry")
+            else if (elementValue === "addEntry")
             {
                 document.getElementById("selectAll").style.display = "none";
                 document.getElementById("selectPremade").style.display = "none";
@@ -50,17 +52,79 @@
             var elementValue = list.options[list.selectedIndex].value;
 
             <!-- block = shown, none = hidden ... i know its weird -->
-            if (elementValue == "myTestTable")
+            switch (elementValue)
             {
-                document.getElementById("myTestTable_divadd").style.display = "block";
-                document.getElementById("myTestTable_divselect").style.display = "block";
-                document.getElementById("Address_divadd").style.display = "none";
-            }
-            else if (elementValue == "Address")
-            {
-                document.getElementById("myTestTable_divadd").style.display = "none";
-                document.getElementById("myTestTable_divselect").style.display = "none";
-                document.getElementById("Address_divadd").style.display = "block";
+                case "myTestTable":
+                    document.getElementById('myTestTable_divadd').style.display = 'block';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'none';
+                    break;
+                case "Agent":
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'block';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'none';
+                    break;
+                case "Appliance":
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'block';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'none';
+                    break;
+                case "Home":
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'block';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'none';
+                    break;
+                case "HomeTransaction":
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'block';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'none';
+                    break;
+                case "Location":
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'block';
+                    document.getElementById('Owner_divadd').style.display = 'none';
+                    break;
+                case "Owner":
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'block';
+                    break;
+                default:
+                    document.getElementById('myTestTable_divadd').style.display = 'none';
+                    document.getElementById('Agent_divadd').style.display = 'none';
+                    document.getElementById('Appliance_divadd').style.display = 'none';
+                    document.getElementById('Home_divadd').style.display = 'none';
+                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
+                    document.getElementById('Location_divadd').style.display = 'none';
+                    document.getElementById('Owner_divadd').style.display = 'none';
             }
         }
 
@@ -133,11 +197,98 @@
         <!-- Different things for different tables -->
         <div id="myTestTable_divadd">
             <label for="myTestTable_name">Name: </label>
-            <input type="text" id="myTestTable_name" name="myTestTable_name" width=12 /><br />
+            <input type="text" id="myTestTable_name" name="myTestTable_name" size=12 /><br />
             <label for="myTestTable_id">ID: </label>
-            <input type="text" id="myTestTable_id" name="myTestTable_id" width=6 /><br />
+            <input type="text" id="myTestTable_id" name="myTestTable_id" size=4 /><br />
         </div>
-        <div id="Address_divadd">
+        <div id="Agent_divadd">
+            <label for="Agent_percentCommission">% Commission: </label>
+            <input type="text" id="Agent_percentCommission" name="Agent_percentCommission" size=4 /><br />
+            <label for="Agent_company">Company: </label>
+            <input type="text" id="Agent_company" name="Agent_company" size=12 /><br />
+            <label for="Agent_agentID">Agent ID: </label>
+            <input type="text" id="Agent_agentID" name="Agent_agentID" size=6 /><br />
+        </div>
+        <div id="Appliance_divadd">
+            <label for="Appliance_name">Appliance Name: </label>
+            <input type="text" id="Appliance_name" name="Appliance_name" size=10 /><br />
+            <label for="Appliance_price">Price: </label>
+            <input type="text" id="Appliance_price" name="Appliance_price" size=6 /><br />
+            <label for="Appliance_maker">Maker: </label>
+            <input type="text" id="Appliance_maker" name="Appliance_maker" size=12 /><br />
+            <label for="Appliance_year">Year: </label>
+            <input type="text" id="Appliance_year" name="Appliance_year" size=12 /><br />
+            <label for="Appliance_modelName">Model Name: </label>
+            <input type="text" id="Appliance_modelName" name="Appliance_modelName" size=12 /><br />
+            <label for="Appliance_homeID">Home ID: </label>
+            <input type="text" id="Appliance_homeID" name="Appliance_homeID" size=12 /><br />
+        </div>
+        <div id="Home_divadd">
+            <label for="Home_homeID">Home ID: </label>
+            <input type="text" id="Home_homeID" name="Home_homeID" size=12 /><br />
+            <label for="Home_floors">Floors: </label>
+            <input type="text" id="Home_floors" name="Home_floors" size=12 /><br />
+            <label for="Home_bedrooms">Bedrooms: </label>
+            <input type="text" id="Home_bedrooms" name="Home_bedrooms" size=12 /><br />
+            <label for="Home_bathrooms"> Bathrooms: </label>
+            <input type="text" id="Home_bathrooms" name="Home_bathrooms" size=12 /><br />
+            <label for="Home_landAcres">Land Acres: </label>
+            <input type="text" id="Home_landAcres" name="Home_landAcres" size=12 /><br />
+            <label for="Home_floorSpace">Floor Space (sqft): </label>
+            <input type="text" id="Home_floorSpace" name="Home_floorSpace" size=12 /><br />
+            <label for="Home_type">Type (Apartment, Mansion, Townhome, Condo): </label>
+            <input type="text" id="Home_type" name="Home_type" size=12 /><br />
+            <label for="Home_yearConstructed">Year Constructed: </label>
+            <input type="text" id="Home_yearConstructed" name="Home_yearConstructed" size=12 /><br />
+            <label for="Home_price">Price: </label>
+            <input type="text" id="Home_price" name="Home_price" size=12 /><br />
+            <br>At least one or the other is required. Put a -1 in blank ones.</br>
+            <label for="Home_ssNumber">SS Number: </label>
+            <input type="text" id="Home_ssNumber" name="Home_ssNumber" size=12 /><br />
+            <label for="Home_agentID">Agent ID: </label>
+            <input type="text" id="Home_agentID" name="Home_agentID" size=12 /><br />
+        </div>
+        <div id="HomeTransaction_divadd">
+            <label for="HomeTransaction_transID">Trans ID: </label>
+            <input type="text" id="HomeTransaction_transID" name="HomeTransaction_transID" size=12 /><br />
+            <label for="HomeTransaction_homeID">Home ID: </label>
+            <input type="text" id="HomeTransaction_homeID" name="HomeTransaction_homeID" size=12 /><br />
+            <label for="HomeTransaction_ssNumber">SS Number: </label>
+            <input type="text" id="HomeTransaction_ssNumber" name="HomeTransaction_ssNumber" size=12 /><br />
+            <label for="HomeTransaction_agentID">Agent ID: </label>
+            <input type="text" id="HomeTransaction_agentID" name="HomeTransaction_agentID" size=12 /><br />
+            <label for="HomeTransaction_price">Price: </label>
+            <input type="text" id="HomeTransaction_price" name="HomeTransaction_price" size=12 /><br />
+        </div>
+        <div id="Location_divadd">
+            <label for="Location_streetNumber">Street Number: </label>
+            <input type="text" id="Location_streetNumber" name="Location_streetNumber" size=12 /><br />
+            <label for="Location_streetName">Street Name: </label>
+            <input type="text" id="Location_streetName" name="Location_streetName" size=12 /><br />
+            <label for="Location_unitNumber">Unit Number (1 if none): </label>
+            <input type="text" id="Location_unitNumber" name="Location_unitNumber" size=12 /><br />
+            <label for="Location_city">City: </label>
+            <input type="text" id="Location_city" name="Location_city" size=12 /><br />
+            <label for="Location_zipCode">Zip Code: </label>
+            <input type="text" id="Location_zipCode" name="Location_zipCode" size=12 /><br />
+            <label for="Location_county">County: </label>
+            <input type="text" id="Location_county" name="Location_county" size=12 /><br />
+            <label for="Location_homeID">Home ID: </label>
+            <input type="text" id="Location_homeID" name="Location_homeID" size=12 /><br />
+        </div>
+        <div id="Owner_divadd">
+            <label for="Owner_name">Full Name: </label>
+            <input type="text" id="Owner_name" name="Owner_name" size=12 /><br />
+            <label for="Owner_ssNumber">SS Number: </label>
+            <input type="text" id="Owner_ssNumber" name="Owner_ssNumber" size=12 /><br />
+            <label for="Owner_age">Age: </label>
+            <input type="text" id="Owner_age" name="Owner_age" size=12 /><br />
+            <label for="Owner_dependents"># of Dependents: </label>
+            <input type="text" id="Owner_dependents" name="Owner_dependents" size=12 /><br />
+            <label for="Owner_yearlyIncome">Yearly Income: </label>
+            <input type="text" id="Owner_yearlyIncome" name="Owner_yearlyIncome" size=12 /><br />
+            <label for="Owner_profession">Profession: </label>
+            <input type="text" id="Owner_profession" name="Owner_profession" size=12 /><br />
         </div>
     </div>
 
@@ -146,7 +297,7 @@
         <option value="myTestTable">myTestTable</option>
         <option value="Agent">Agent</option>
         <option value="Owner">Owner</option>
-        <option value="Home">Home</option>
+        <option value="Home" selected="selected">Home</option>
         <option value="Location">Location</option>
         <option value="Appliance">Appliance</option>
         <option value="HomeTransaction">HomeTransaction</option>

@@ -27,7 +27,7 @@ type VARCHAR(50) NOT NULL,
 yearConstructed INT NOT NULL,
 price INT NOT NULL,
 ssNumber INT,
-agentID INT,
+agentID INT UNIQUE,
 FOREIGN KEY (ssNumber) REFERENCES Owner(ssNumber),
 CONSTRAINT Chk_Type CHECK ((floorSpace >= 6000 AND landAcres >= 2 AND type = 'Mansion') OR (floors = 1 AND type = 'Apartment') OR (type = 'Townhome') OR (type = 'Condo')),
 CONSTRAINT Chk_People CHECK (NOT (agentID IS NULL AND ssNumber IS NULL))
@@ -40,7 +40,7 @@ unitNumber INT NOT NULL,
 city VARCHAR(50) NOT NULL,
 zipCode INT NOT NULL, 
 county VARCHAR(50) NOT NULL,
-homeID INT NOT NULL,
+homeID INT PRIMARY KEY,
 FOREIGN KEY (homeID) REFERENCES Home(homeID)
 );
 

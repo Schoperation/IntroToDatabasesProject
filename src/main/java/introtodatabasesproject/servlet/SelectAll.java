@@ -48,6 +48,7 @@ public class SelectAll implements IQuery
             writer.println("</th>");
         }
 
+
         writer.println("</tr>");
 
         // Now populate the table with the data

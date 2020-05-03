@@ -74,7 +74,10 @@ public class TableCmds
             switch (dt)
             {
                 case INTEGER:
-                    pstmt.setInt(i, (Integer) entry.getData().get(i-1));
+                    if ((Integer) entry.getData().get(i-1) < 0)
+                        pstmt.setNull(i, Types.INTEGER);
+                    else
+                        pstmt.setInt(i, (Integer) entry.getData().get(i-1));
                     break;
                 case FLOAT:
                     pstmt.setFloat(i, (Float) entry.getData().get(i-1));

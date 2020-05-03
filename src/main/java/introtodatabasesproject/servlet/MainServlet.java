@@ -58,19 +58,6 @@ public class MainServlet extends HttpServlet
 
         writer.println("<a href=../IntroToDatabases>Go back</a><br>");
 
-        // TODO temp
-        Iterator<String[]> iterator = request.getParameterMap().values().iterator();
-
-        while (iterator.hasNext())
-        {
-
-            System.out.println("new thing");
-            for (String s : iterator.next())
-            {
-                System.out.println(s);
-            }
-        }
-
         // Figure out what queryType was, then fire corresponding method
         switch (request.getParameter("queryType"))
         {
@@ -80,6 +67,8 @@ public class MainServlet extends HttpServlet
                     sa.execute(request, response, conn, pstmt);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
                 }
                 break;
             case "selectPremade":
@@ -91,6 +80,8 @@ public class MainServlet extends HttpServlet
                     ae.execute(request, response, conn, pstmt);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
                 }
                 break;
             default:
