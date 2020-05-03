@@ -111,5 +111,7 @@ public class AddEntry implements IQuery
                 writer.println("Name: " + request.getParameter("myTestTable_name") + ", ID: " + request.getParameter("myTestTable_id"));
                 break;
         }
+
+        writer.close();
     }
 }

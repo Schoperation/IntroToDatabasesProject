@@ -6,138 +6,12 @@
     <title>Welcome</title>
 
     <!-- Javascript for showing/hiding elements -->
-    <script language="javascript" type="text/javascript">
-
-        function changeForm()
-        {
-            changeTable();
-
-            var list = document.getElementById("queryType");
-            var elementValue = list.options[list.selectedIndex].value;
-
-            <!-- block = shown, none = hidden ... i know its weird -->
-            if (elementValue === "selectAll")
-            {
-                document.getElementById("selectAll").style.display = "block";
-                document.getElementById("selectPremade").style.display = "none";
-                document.getElementById("customQuery").style.display = "none";
-                document.getElementById("addEntry").style.display = "none";
-            }
-            else if (elementValue === "selectPremade")
-            {
-                document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectPremade").style.display = "block";
-                document.getElementById("customQuery").style.display = "none";
-                document.getElementById("addEntry").style.display = "none";
-            }
-            else if (elementValue === "customQuery")
-            {
-                document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectPremade").style.display = "none";
-                document.getElementById("customQuery").style.display = "block";
-                document.getElementById("addEntry").style.display = "none";
-            }
-            else if (elementValue === "addEntry")
-            {
-                document.getElementById("selectAll").style.display = "none";
-                document.getElementById("selectPremade").style.display = "none";
-                document.getElementById("customQuery").style.display = "none";
-                document.getElementById("addEntry").style.display = "block";
-            }
-        }
-
-        function changeTable()
-        {
-            var list = document.getElementById("table1");
-            var elementValue = list.options[list.selectedIndex].value;
-
-            <!-- block = shown, none = hidden ... i know its weird -->
-            switch (elementValue)
-            {
-                case "myTestTable":
-                    document.getElementById('myTestTable_divadd').style.display = 'block';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-                    break;
-                case "Agent":
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'block';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-                    break;
-                case "Appliance":
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'block';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-                    break;
-                case "Home":
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'block';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-                    break;
-                case "HomeTransaction":
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'block';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-                    break;
-                case "Location":
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'block';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-                    break;
-                case "Owner":
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'block';
-                    break;
-                default:
-                    document.getElementById('myTestTable_divadd').style.display = 'none';
-                    document.getElementById('Agent_divadd').style.display = 'none';
-                    document.getElementById('Appliance_divadd').style.display = 'none';
-                    document.getElementById('Home_divadd').style.display = 'none';
-                    document.getElementById('HomeTransaction_divadd').style.display = 'none';
-                    document.getElementById('Location_divadd').style.display = 'none';
-                    document.getElementById('Owner_divadd').style.display = 'none';
-            }
-        }
-
-        function changePremade()
-        {
-            <!-- todo -->
-        }
-
-    </script>
+    <script language="javascript" type="text/javascript" src="showAndHide.js"></script>
 </head>
-<body onload=changeForm()>
+<body onload=changeForm() bgcolor="#00ccff">
     <h1>Database Project - Spring 2020</h1>
     <h4>Find the perfect home; or owner; or whatever!</h4><p />
+    <h4>Version <%= introtodatabasesproject.core.DatabaseMain.VERSION %></h4>
 
     <!-- This is the form that will be submitted and processed by MainServlet -->
     <form action="mainServlet" method="post">
@@ -148,6 +22,7 @@
         <option value="selectPremade">Use a premade query</option>
         <option value="customQuery">Enter in a custom query</option>
         <option value="addEntry">Add an entry to a table</option>
+        <option value="changeOwner">Change Owner/Mark a House Sold</option>
     </select><p />
 
     <div id="selectAll">
@@ -190,6 +65,9 @@
     </div>
 
     <div id="customQuery">
+        <br>Include the SELECT</br>
+        <label for="customQueryText">Enter Oracle SQL SELECT Query: </label><br />
+        <input type="text" name="customQueryText" id="customQueryText" size=60 />
     </div>
 
     <div id="addEntry">
@@ -291,8 +169,18 @@
             <input type="text" id="Owner_profession" name="Owner_profession" size=12 /><br />
         </div>
     </div>
+    <div id="changeOwner">
+        <p>Search through the tables the find ids, if needed.</p>
+        <label for="newssNumber">Enter the New Owners SS Number: </label>
+        <input type="text" id="newssNumber" name="newssNumber" size=12 /><br />
+        <label for="newHomeID">Enter the ID of the Home: </label>
+        <input type="text" id="newHomeID" name="newHomeID" size=12 /><br />
+        <label for="newPrice">Enter the Price: </label>
+        <input type="text" id="newPrice" name="newPrice" size=12 /><br />
+    </div>
 
     <!-- Drop down with all tables -->
+    <label for="table1"><b>Table: </b></label>
     <select id="table1" name="table1" onchange=changeTable()>
         <option value="myTestTable">myTestTable</option>
         <option value="Agent">Agent</option>

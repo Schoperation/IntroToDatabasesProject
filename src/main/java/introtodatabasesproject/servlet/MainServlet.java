@@ -63,6 +63,7 @@ public class MainServlet extends HttpServlet
         {
             case "selectAll":
                 SelectAll sa = new SelectAll();
+                System.out.println("Running Select all command for " + request.getParameter("table1") + "...");
                 try {
                     sa.execute(request, response, conn, pstmt);
                 } catch (SQLException throwables) {
@@ -73,9 +74,19 @@ public class MainServlet extends HttpServlet
                 break;
             case "selectPremade":
             case "customQuery":
+                CustomQuery cq = new CustomQuery();
+                System.out.println("Running custom select query...");
+                try {
+                    cq.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
+                }
                 break;
             case "addEntry":
                 AddEntry ae = new AddEntry();
+                System.out.println("Running Insert command for " + request.getParameter("table1") + "...");
                 try {
                     ae.execute(request, response, conn, pstmt);
                 } catch (SQLException throwables) {
@@ -84,6 +95,16 @@ public class MainServlet extends HttpServlet
                     writer.println(throwables.getMessage());
                 }
                 break;
+            case "changeOwner":
+                ChangeOwnership co = new ChangeOwnership();
+                System.out.println("Changing ownership...");
+                try {
+                    co.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
+                }
             default:
                 break;
         }
