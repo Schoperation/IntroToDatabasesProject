@@ -12,6 +12,11 @@
     <h1>Database Project - Spring 2020</h1>
     <h4>Find the perfect home; or owner; or whatever!</h4><p />
     <h4>Version <%= introtodatabasesproject.core.DatabaseMain.VERSION %></h4>
+    Coded by: <%= introtodatabasesproject.core.Names.CODER %><br>
+    Led by: <%= introtodatabasesproject.core.Names.LEADER %><br>
+    Sql Scripted (the files) by: <%= introtodatabasesproject.core.Names.SQL_SCRIPTS %><br>
+    Documented by: <%= introtodatabasesproject.core.Names.DOCUMENTATOR %><br>
+
 
     <!-- This is the form that will be submitted and processed by MainServlet -->
     <form action="mainServlet" method="post">
@@ -21,6 +26,7 @@
         <option value="selectHome" selected="selected">Find a home...</option>
         <option value="selectOwner">Find an owner/transaction...</option>
         <option value="selectAgent">Find an agent&#39;s total commissions</option>
+        <option value="selectPremade">Use a premade query</option>
         <option value="changeOwner">Change Owner/Mark a House Sold</option>
         <option value="selectAll">View an entire datatable</option>
         <option value="addEntry">Add an entry to a table</option>
@@ -81,14 +87,25 @@
     </div>
 
     <div id="selectOwner">
-        <p>Find the most expensive home an owner bought...</p>
-        <p>OR</p>
-        <p>Find all previous homes an owner has bought...</p>
+        <select id="selectOwnerOption" name="selectOwnerOption">
+            <option value="mostExpensive">Find the most expensive home an owner bought</option>
+            <option value="previousHomes">Find all previous homes an owner has bought</option>
+        </select>
+
+        <label for="Owner1_ssNumber">SS Number: </label>
+        <input type="text" id="Owner1_ssNumber" name="Owner1_ssNumber" size=12 /><br />
     </div>
 
     <div id="selectAgent">
         <label for="Agent1_agentID">Agent ID: </label>
         <input type="text" id="Agent1_agentID" name="Agent1_agentID" size=12 /><br />
+    </div>
+
+    <div id="selectPremade">
+        <select id="premadeQuery" name="premadeQuery">
+            <option value="aptsAndMansions">Find people who own apartments and mansions</option>
+            <option value="soldMoreThanOnce">Find homes sold more than once</option>
+        </select>
     </div>
 
     <div id="changeOwner">

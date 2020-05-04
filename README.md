@@ -1,6 +1,6 @@
 # Intro to Databases Project
 
-How to install and run, for a standalone tomcat server (Windows):
+How to install and run, for a standalone tomcat server and Oracle Database (Windows):
 
 1. If you're reading this from GitHub, go to the Releases above and download the latest .zip file.
 2. Unpack the contents of the .zip.

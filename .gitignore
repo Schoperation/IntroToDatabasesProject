@@ -11,3 +11,7 @@ gradle
 .gradle
 *.properties
 
+# ha
+Names.java
+Names.class
+

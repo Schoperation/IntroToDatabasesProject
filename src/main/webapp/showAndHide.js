@@ -3,7 +3,7 @@ function changeForm()
     var list = document.getElementById("queryType");
     var elementValue = list.options[list.selectedIndex].value;
 
-    var possibleValues = ["selectHome", "selectOwner", "selectAgent", "changeOwner", "selectAll", "addEntry", "customQuery"];
+    var possibleValues = ["selectHome", "selectOwner", "selectAgent", "selectPremade", "changeOwner", "selectAll", "addEntry", "customQuery"];
 
     // loop through possibleValues and change display depending on elementValue
     // block = shown, none = hidden ... i know its weird

@@ -94,6 +94,28 @@ public class MainServlet extends HttpServlet
                     writer.println(throwables.getMessage());
                 }
                 break;
+            case "selectOwner":
+                FindOwner fo = new FindOwner();
+                System.out.println("Finding owner...");
+                try {
+                    fo.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
+                }
+                break;
+            case "selectPremade":
+                PremadeQuery pq = new PremadeQuery();
+                System.out.println("Doing premade query...");
+                try {
+                    pq.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
+                }
+                break;
             case "customQuery":
                 CustomQuery cq = new CustomQuery();
                 System.out.println("Running custom select query...");

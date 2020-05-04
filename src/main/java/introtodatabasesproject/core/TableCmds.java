@@ -186,4 +186,40 @@ public class TableCmds
                 return TestEntry.DUMMY_ENTRY;
         }
     }
+
+    public static void generateTable(ResultSet resultSet, PrintWriter writer) throws SQLException
+    {
+        writer.println("<table>");
+        writer.println("<tr>");
+
+        // Headers
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
+        int j;
+        for (j = 0; j < resultSetMetaData.getColumnCount(); j++)
+        {
+            writer.println("<td>");
+            writer.println(resultSetMetaData.getColumnLabel(j+1));
+            writer.println("</td>");
+        }
+
+        writer.println("</tr>");
+
+        // Actual table
+        while (resultSet.next())
+        {
+            writer.println("<tr>");
+            int k;
+            for (k = 0; k < resultSetMetaData.getColumnCount(); k++)
+            {
+                writer.println("<td>");
+                writer.println(resultSet.getObject(k+1));
+                writer.println("</td>");
+            }
+
+            writer.println("</tr>");
+        }
+
+        writer.println("</table>");
+    }
 }

@@ -1,5 +1,7 @@
 package introtodatabasesproject.servlet;
 
+import introtodatabasesproject.core.TableCmds;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,39 +31,8 @@ public class CustomQuery implements IQuery
 
         writer.println("<h1>Results for custom query</h1>");
         writer.println("<h3>" + sql + "</h3>");
-        writer.println("<table>");
-        writer.println("<tr>");
-
-        // Headers
-        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-
-        int i;
-        for (i = 0; i < resultSetMetaData.getColumnCount(); i++)
-        {
-            writer.println("<td>");
-            writer.println(resultSetMetaData.getColumnLabel(i+1));
-            writer.println("</td>");
-        }
-
-        writer.println("</tr>");
-
-        // Actual table
-        while (resultSet.next())
-        {
-            writer.println("<tr>");
-            int j;
-            for (j = 0; j < resultSetMetaData.getColumnCount(); j++)
-            {
-                writer.println("<td>");
-                writer.println(resultSet.getObject(j+1));
-                writer.println("</td>");
-            }
-
-            writer.println("</tr>");
-        }
-
+        TableCmds.generateTable(resultSet, writer);
         resultSet.close();
-        writer.println("</table>");
         writer.close();
     }
 }
