@@ -59,8 +59,8 @@ public class CustomQuery implements IQuery
 
             writer.println("</tr>");
         }
-        //TableCmds.populateHTMLTable(resultSet, writer, );
 
+        resultSet.close();
         writer.println("</table>");
         writer.close();
     }

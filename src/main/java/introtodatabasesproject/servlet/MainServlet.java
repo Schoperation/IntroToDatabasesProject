@@ -54,6 +54,7 @@ public class MainServlet extends HttpServlet
         writer.println("}");
         writer.println("</style>");
         writer.println("</head>");
+        writer.println("<body bgcolor=#00ccff>");
 
         writer.println("<a href=../IntroToDatabases>Go back</a><br>");
 
@@ -71,7 +72,28 @@ public class MainServlet extends HttpServlet
                     writer.println(throwables.getMessage());
                 }
                 break;
-            case "selectPremade":
+            case "selectHome":
+                FindHome fh = new FindHome();
+                System.out.println("Finding homes...");
+                try {
+                    fh.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
+                }
+                break;
+            case "selectAgent":
+                FindAgent fa = new FindAgent();
+                System.out.println("Finding agent commission...");
+                try {
+                    fa.execute(request, response, conn, pstmt);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    writer.println(throwables.getSQLState());
+                    writer.println(throwables.getMessage());
+                }
+                break;
             case "customQuery":
                 CustomQuery cq = new CustomQuery();
                 System.out.println("Running custom select query...");
@@ -108,6 +130,7 @@ public class MainServlet extends HttpServlet
                 break;
         }
 
+        writer.println("</body>");
         writer.close();
 
         // Close prepared statement and connection

@@ -19,7 +19,7 @@
     <h3>What would you like to do?</h3><br />
     <select id="queryType" name="queryType" onchange=changeForm()>
         <option value="selectHome" selected="selected">Find a home...</option>
-        <option value="selectOwner">Find an owner...</option>
+        <option value="selectOwner">Find an owner/transaction...</option>
         <option value="selectAgent">Find an agent&#39;s total commissions</option>
         <option value="changeOwner">Change Owner/Mark a House Sold</option>
         <option value="selectAll">View an entire datatable</option>
@@ -42,9 +42,54 @@
     <p />
     </div>
 
-    <div id="selectHome"></div>
-    <div id="selectOwner"></div>
-    <div id="selectAgent"></div>
+    <div id="selectHome">
+        <h5>Fill in the information to your heart&#39;s desire. Not all need to be filled in, but at least one field does.</h5>
+        <label for="Home1_home.homeID">Home ID: </label>
+        <input type="text" id="Home1_home.homeID" name="Home1_home.homeID" size=12 /><br />
+        <label for="Home1_floors">Floors (exact): </label>
+        <input type="text" id="Home1_floors" name="Home1_floors" size=12 /><br />
+        <label for="Home1_bedrooms">Bedrooms (exact): </label>
+        <input type="text" id="Home1_bedrooms" name="Home1_bedrooms" size=12 /><br />
+        <label for="Home1_bathrooms"> Bathrooms (exact): </label>
+        <input type="text" id="Home1_bathrooms" name="Home1_bathrooms" size=12 /><br />
+
+        <label for="Home1_landAcres_min">Land Acres: (MIN, MAX)</label>
+        <input type="text" id="Home1_landAcres_min" name="Home1_landAcres_min" value=0 size=6 />
+        <input type="text" id="Home1_landAcres_max" name="Home1_landAcres_max" size=6 /><br />
+
+        <label for="Home1_floorSpace_min">Floor Space (sqft) (MIN, MAX): </label>
+        <input type="text" id="Home1_floorSpace_min" name="Home1_floorSpace_min" value=0 size=6 />
+        <input type="text" id="Home1_floorSpace_max" name="Home1_floorSpace_max" size=6 /><br />
+
+        <label for="Home1_type">Type (Apartment, Mansion, Townhome, Condo): </label>
+        <input type="text" id="Home1_type" name="Home1_type" size=12 /><br />
+        <label for="Home1_yearConstructed">Year Constructed: </label>
+        <input type="text" id="Home1_yearConstructed" name="Home1_yearConstructed" size=12 /><br />
+
+        <label for="Home1_price_min">Price: (MIN, MAX)</label>
+        <input type="text" id="Home1_price_min" name="Home1_price_min" value=0 size=6 />
+        <input type="text" id="Home1_price_max" name="Home1_price_max" size=6 /><br />
+
+        <br>At least one or the other is required. Put a -1 in blank ones.</br>
+        <label for="Home1_ssNumber">SS Number: </label>
+        <input type="text" id="Home1_ssNumber" name="Home1_ssNumber" size=12 /><br />
+        <label for="Home1_agentID">Agent ID: </label>
+        <input type="text" id="Home1_agentID" name="Home1_agentID" size=12 /><br /><br />
+
+        <label for="Home1_city">City: </label>
+        <input type="text" id="Home1_city" name="Home1_city" size=12 /><br />
+    </div>
+
+    <div id="selectOwner">
+        <p>Find the most expensive home an owner bought...</p>
+        <p>OR</p>
+        <p>Find all previous homes an owner has bought...</p>
+    </div>
+
+    <div id="selectAgent">
+        <label for="Agent1_agentID">Agent ID: </label>
+        <input type="text" id="Agent1_agentID" name="Agent1_agentID" size=12 /><br />
+    </div>
 
     <div id="changeOwner">
         <p>Search through the tables the find ids, if needed.</p>
