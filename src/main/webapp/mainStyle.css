@@ -69,7 +69,7 @@ td {
     padding: 3px;
 }
 
-input[type=text] {
+input[type=text], input[type=number] {
     background-color: #e5e5e5;
     border-color: #000000;
     border-width: 1px;
