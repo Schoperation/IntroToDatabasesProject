@@ -50,7 +50,7 @@ public class MainServlet extends HttpServlet
         writer.println("<head>");
         writer.println("<style>");
         writer.println("table, th, td {");
-        writer.println("border: 1px solid black; background-color: #b3b3b3; padding: 5px;");
+        writer.println("border: 1px solid black; background-color: #ff6247; padding: 5px; text-align: right; ");
         writer.println("}");
         writer.println("</style>");
         writer.println("</head>");

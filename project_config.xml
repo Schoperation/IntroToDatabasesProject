@@ -5,6 +5,5 @@
         <password>data21</password>
         <!-- jdbc:oracle:thin:@hostname:port:service-name -->
         <database-url>jdbc:oracle:thin:@localhost:1521:orcl</database-url>
-        <tomcat-dir>apache-tomcat-9.0.34/</tomcat-dir>
     </database>
 </config>

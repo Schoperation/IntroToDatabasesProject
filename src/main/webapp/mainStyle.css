@@ -1,0 +1,78 @@
+body {
+    background-color: #00ccff;
+    text-align: center;
+}
+
+#queryTypeTable {
+    background-color: #ff6247;
+    text-align: center;
+    margin: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    padding: 10px;
+}
+
+#tableDropdownTable {
+    background-color: #ff6247;
+    text-align: center;
+    margin: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    padding: 10px;
+}
+
+#formTbl1, #formTbl2, #formTbl3, #formTbl4, #formTbl5, #formTbl6, #formTbl7 {
+    background-color: #ff6247;
+    text-align: left;
+    margin: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+#myTestTable_divadd, #Agent_divadd, #Appliance_divadd, #Home_divadd, #HomeTransaction_divadd, #Location_divadd, #Owner_divadd {
+    background-color: #ff6247;
+    text-align: left;
+    margin-left: 600px;
+    margin-right: 600px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+/* The submit query button */
+input[type=submit] {
+    background-color: #22ff42;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    border-radius: 5px;
+    margin: auto;
+    padding: 4px 8px;
+}
+
+/* All dropdown lists */
+select {
+    background-color: #dfdfdf;
+    padding: 4px 8px;
+}
+
+td {
+    border: none;
+    padding: 3px;
+}
+
+input[type=text] {
+    background-color: #e5e5e5;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+}

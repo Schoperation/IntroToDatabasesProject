@@ -56,8 +56,3 @@ function changeTable()
         }
     }
 }
-
-function changePremade()
-{
-    // todo
-}

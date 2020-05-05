@@ -20,7 +20,7 @@ public class FindHome implements IQuery
         // Get all the possible parameters of HomeEntry we can get
         // Put them all in a list
         ArrayList values = new ArrayList();
-        String[] array = {"home.homeID", "floors", "bedrooms", "bathrooms", "landAcres_min", "landAcres_max", "floorSpace_min", "floorSpace_max", "type", "yearConstructed", "price_min", "price_max", "ssNumber", "agentID", "city"};
+        String[] array = {"home.homeID", "floors", "bedrooms", "bathrooms", "landAcres_min", "landAcres_max", "floorSpace_min", "floorSpace_max", "type", "yearConstructed", "price_min", "price_max", "ssNumber", "agentID"};
         ArrayList<String> names = new ArrayList(Arrays.asList(array));
 
         for (String name : names)
@@ -33,7 +33,15 @@ public class FindHome implements IQuery
 
         // The above parameters are for the where condition; we'll just slap them all on with the and keyword
         StringBuilder sb = new StringBuilder();
-        sb.append("select * from home inner join location on location.homeID = home.homeID where ");
+        sb.append("select * from home where ");
+
+        // Special parameters maker (appliance), name (owner), and city (location)
+        if (!request.getParameter("Home1_city").isEmpty())
+            sb.append("homeID in (select homeID from location where city = '" + request.getParameter("Home1_city") + "') and ");
+        if (!request.getParameter("Home1_maker").isEmpty())
+            sb.append("homeID in (select homeID from appliance where maker = '" + request.getParameter("Home1_maker") + "') and ");
+        if (!request.getParameter("Home1_name").isEmpty())
+            sb.append("ssNumber in (select ssNumber from owner where name = '" + request.getParameter("Home1_name") + "') and ");
 
         // Add the normals first
         int i;
@@ -43,14 +51,14 @@ public class FindHome implements IQuery
             if (values.get(i) != null && names.get(i).contains("min"))
             {
                 sb.append(names.get(i).replace("_min", ""));
-                sb.append(" > ");
+                sb.append(" >= ");
                 sb.append(values.get(i));
             }
             // Range item, maximum
             else if (values.get(i) != null && names.get(i).contains("max"))
             {
                 sb.append(names.get(i).replace("_max", ""));
-                sb.append(" < ");
+                sb.append(" <= ");
                 sb.append(values.get(i));
             }
             // String
@@ -77,6 +85,8 @@ public class FindHome implements IQuery
         sb.append("home.homeID > 0");
 
         String sql = sb.toString();
+
+        System.out.println(sql);
 
         pstmt = conn.prepareStatement(sql);
         ResultSet resultSet = pstmt.executeQuery();
